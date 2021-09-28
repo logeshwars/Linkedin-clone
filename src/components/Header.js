@@ -1,14 +1,4 @@
 import { signOut, signOutAPI } from "../actions";
-import {
-  ArrowDropDown,
-  Group,
-  Apps,
-  Home,
-  Message,
-  Notifications,
-  SearchRounded,
-  WorkRounded,
-} from "@material-ui/icons";
 import React from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
@@ -30,38 +20,49 @@ function Header(props) {
             <input placeholder="Search" type="text" />
           </div>
           <SearchIcon>
-            <SearchRounded />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              data-supported-dps="24x24"
+              fill="currentColor"
+              class="mercado-match"
+              width="24"
+              height="24"
+              focusable="false"
+            >
+              <path d="M21.41 18.59l-5.27-5.28A6.83 6.83 0 0017 10a7 7 0 10-7 7 6.83 6.83 0 003.31-.86l5.28 5.27a2 2 0 002.82-2.82zM5 10a5 5 0 115 5 5 5 0 01-5-5z"></path>
+            </svg>
           </SearchIcon>
         </Search>
         <Nav>
           <NavListWrap>
             <NavList className="a">
               <a href="">
-                <Home />
+                <img src="images/nav-home.svg" />
                 <span>Home</span>
               </a>
             </NavList>
             <NavList>
               <a href="">
-                <Group />
+                <img src="images/nav-network.svg" />
                 <span>My Network</span>
               </a>
             </NavList>
             <NavList>
               <a href="">
-                <WorkRounded />
+                <img src="images/nav-jobs.svg" />
                 <span>Jobs</span>
               </a>
             </NavList>
             <NavList>
               <a href="">
-                <Message />
+                <img src="images/nav-messaging.svg" />
                 <span>Messaging</span>
               </a>
             </NavList>
             <NavList>
               <a href="">
-                <Notifications />
+                <img src="images/nav-notifications.svg" />
                 <span>Notifications</span>
               </a>
             </NavList>
@@ -74,8 +75,14 @@ function Header(props) {
             ) : (
               <img src="images/user.svg" alt="" />
             )}
-            <span>me</span>
-            <ArrowDropDown style={{ fontSize: "medium" }} />
+            <Me>
+              <span>Me</span>
+              <img
+                src="images/down-icon.svg"
+                alt=""
+                style={{ width: "15px", objectFit: "contain", height: "15px" }}
+              />
+            </Me>
           </a>
           <SignOut onClick={() => props.signOut()}>
             <a>SignOut</a>
@@ -83,13 +90,22 @@ function Header(props) {
         </User>
         <Work>
           <a href="">
-            <Apps />
+            <img src="images/nav-work.svg" alt="" />
             <span>
               Work
-              <ArrowDropDown style={{ fontSize: "medium" }} />
+              <img
+                src="images/down-icon.svg"
+                alt=""
+                style={{ width: "15px", objectFit: "contain", height: "15px" }}
+              />
             </span>
           </a>
         </Work>
+        <Premium>
+          <a href="">
+            Try premium for free
+          </a>
+        </Premium>
       </Content>
     </Container>
   );
@@ -97,11 +113,13 @@ function Header(props) {
 const Container = styled.div`
   background-color: white;
   border-bottom: 1px solid rgb(0, 0, 0, 0.08);
-  padding: 0px 24px;
+  display: flex;
+  align-items: center;
+  padding: 0px 0px;
   position: fixed;
   left: 0;
   top: 0;
-  width: 96vw;
+  width: 100vw;
   z-index: 1;
 `;
 const Content = styled.div`
@@ -122,13 +140,20 @@ const Search = styled.div`
   flex-grow: 1;
   position: relative;
   & div {
+    svg {
+      width: 20px;
+      margin-left: 10px;
+    }
     max-width: 280px;
     input {
       border: none;
       background-color: #eef3f8;
       border-radius: 2px;
-      width: 218px;
+      width: 230px;
       padding: 0px 8px 0 40px;
+      @media (max-width: 768px) {
+        width: 200px;
+      }
       line-height: 1.75;
       font-weight: 400;
       font-size: 14px;
@@ -159,7 +184,7 @@ const Nav = styled.div`
 const NavListWrap = styled.ul`
   list-style-type: none;
   display: flex;
-  padding: 0px;
+  padding: 0;
   flex-wrap: nowrap;
 
   .a {
@@ -181,6 +206,7 @@ const NavList = styled.li`
   display: flex;
   align-items: center;
   a {
+    padding: 5px 0;
     align-items: center;
     text-decoration: none;
     min-width: 80px;
@@ -190,13 +216,14 @@ const NavList = styled.li`
     justify-content: center;
     flex-direction: column;
     font-size: 12px;
-    font-weight: 400px;
+    font-weight: 500px;
     line-height: 1.5;
     color: black;
     span {
       color: rgb(0, 0, 0, 0.6);
       display: flex;
       align-items: center;
+      font-weight: 440;
     }
     @media (max-width: 768px) {
       min-width: 70px;
@@ -220,6 +247,10 @@ const SignOut = styled.div`
   display: none;
   border-radius: 3px;
 `;
+const Me  =  styled.div`
+  display:  flex;
+  align-items: center;
+`;;
 const User = styled(NavList)`
   img {
     width: 25px;
@@ -234,7 +265,22 @@ const User = styled(NavList)`
     }
   }
 `;
-const Work = styled(User)``;
+const Work = styled(User)`
+    border-left:  1px solid rgba(0,0,0,0.2);
+`;
+const Premium = styled.div`
+  width: 100px;
+  text-align: center;
+  a {
+    color: #915907;
+    font-size: 13px;
+    font-weight: 400;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+`;
 const mapStateProps = (state) => {
   return {
     user: state.userState.user,

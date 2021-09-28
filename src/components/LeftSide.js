@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
-
 function LeftSide(props) {
   return (
     <Container>
@@ -38,6 +37,30 @@ function LeftSide(props) {
             </svg>
           </a>
         </Widget>
+        <Widget2>
+          <span>Access exclusive tools & insights </span>
+          <span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              data-supported-dps="24x24"
+              class="mercado-match"
+              width="24"
+              height="24"
+              focusable="false"
+            >
+              <path
+                d="M20 20a3.36 3.36 0 001-2.39V6.38A3.38 3.38 0 0017.62 3H6.38A3.36 3.36 0 004 4z"
+                fill="#f8c77e"
+              ></path>
+              <path
+                d="M4 4a3.36 3.36 0 00-1 2.38v11.24A3.38 3.38 0 006.38 21h11.24A3.36 3.36 0 0020 20z"
+                fill="#e7a33e"
+              ></path>
+            </svg>
+            Try permium for free
+          </span>
+        </Widget2>
         <Item>
           <span>
             <svg
@@ -55,7 +78,7 @@ function LeftSide(props) {
           </span>
         </Item>
       </ArtCard>
-      <CommunityCard>
+      <CommunityCard id="sticky">
         <a>
           <span>Groups</span>
         </a>
@@ -80,7 +103,7 @@ function LeftSide(props) {
           <span>Followed hashtags</span>
         </a>
         <a>
-          <span>Discover more</span>
+          <span style={{  fontSize:  "14px"  }}>Discover more</span>
         </a>
       </CommunityCard>
     </Container>
@@ -96,9 +119,8 @@ const ArtCard = styled.div`
   background: white;
   border-radius: 5px;
   position: relative;
-  transition: box-shadow 83px;
   border: none;
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2);
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2), -1px -1px 4px rgba(0, 0, 0, 0.2);
 `;
 const UserInfo = styled.div`
   padding: 12px 12px 16px;
@@ -158,6 +180,7 @@ const Widget = styled.div`
     text-align: left;
     span {
       font-size: 12px;
+      font-weight: 600;
       line-height: 1.333;
       &:first-child {
         color: rgb(0, 0, 0, 0.6);
@@ -177,7 +200,9 @@ const Item = styled.a`
   span {
     display: flex;
     align-items: center;
+    font-weight: 600;
     svg {
+      margin-right: 5px;
       color: rgba(0, 0, 0, 0.6);
     }
   }
@@ -187,31 +212,60 @@ const Item = styled.a`
 `;
 const CommunityCard = styled(ArtCard)`
   padding: 8px 0px 0px;
+  transition-duration: top 2s;
   text-align: left;
   display: flex;
   flex-direction: column;
   a {
     color: #0a66c2;
     padding: 4px 12px 4px 12px;
-    font-size: 15px;
+    font-size: 13px;
 
     span {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      font-weight: 600;
+      line-height: 1.5;
+      font-size: 12px;
       svg {
         color: rgba(0, 0, 0, 0.6);
       }
     }
-
     &:last-child {
       color: rgba(0, 0, 0, 0.6);
+      display: grid;
+      place-items: center;
+      font-size: 15px;
       padding: 12px;
       text-decoration: none;
       border-top: 1px solid rgba(0, 0, 0, 0.16);
-      text-align: center !important;
       &:hover {
         background: rgba(0, 0, 0, 0.1);
+      }
+    }
+  }
+`;
+const Widget2 = styled(Widget)`
+  display: flex;
+  flex-direction: column;
+  span {
+    text-align: left;
+    padding: 0 10px;
+    line-height: 1.4;
+    &:first-child {
+      font-size: 12px;
+      font-weight: 400;
+      color: rgba(0, 0, 0, 0.7);
+    }
+    &:last-child {
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      font-weight: 500;
+      svg {
+        width: 18px;
+        margin-right: 5px;
       }
     }
   }
